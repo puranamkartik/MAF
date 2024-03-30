@@ -1734,6 +1734,7 @@
           <attribute id="yn258" name="autolocate"/>
           <attribute id="p6d4b" name="workorderid" unique-id="true"/>
           <attribute id="q9qmr" name="wonum"/>
+          <attribute name="testc" id="a1_w5n4m"/>
           <attribute id="gmp_2" name="title"/>
           <attribute id="kq9yq" name="description"/>
           <attribute id="m75qa" name="description_longdescription"/>
@@ -2871,6 +2872,8 @@
                           <button label="Sample Button " on-click="{console.log('Nadeem and Kartik')}" id="a1_q4wb7"/>
                           <box background-color="support-03" id="a1_prm6q">
                             <label label="Sample Box" id="a1_p3ekz"/>
+                            <field value="{woDetailResource.item.wonum}" id="a1_kbxyk"/>
+                            <field value="{woDetailResource.item.testc}" id="a1_mzbd4"/>
                           </box>
                           <border-layout id="a1_qb9er">
                             <top background-color="support-01" id="a1_e5gpw">
@@ -2912,6 +2915,7 @@
                             </box>
                             <box background-color="support-03" id="a1_qe8kb">
                               <label label="BOX3" id="a1_e8_dm"/>
+                              <field value="{woDetailResource.item.wonum}" id="a1_v5dey"/>
                             </box>
                           </box>
                           <refapp-pivot-template id="j6pb9">
