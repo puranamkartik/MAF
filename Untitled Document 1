@@ -281,6 +281,23 @@
         <attribute computed-function="computedMeterCurTime" id="m29de" name="computedMeterCurTime" sub-type="TIME"/>
       </schema>
     </maximo-datasource>
+    <maximo-datasource id="transportticket" notify-when-parent-loads="true" object-name="transportticket" relationship="transporttickets.mxtransportticket" selection-mode="none">
+      <schema id="a1_aamez">
+        <attribute name="assetnum" id="a1_x3xn4"/>
+        <attribute name="description" id="a1_xn6ke"/>
+        <attribute name="description_longdescription" id="a1_wb986"/>
+        <attribute name="hasld" id="a1_rpryk"/>
+        <attribute name="hold" id="a1_ew2ya"/>
+        <attribute name="location" id="a1_d57v_"/>
+        <attribute name="orgid" id="a1_zknwv"/>
+        <attribute name="saddrcode" id="a1_a8v9j"/>
+        <attribute name="siteid" id="a1_m9q4y"/>
+        <attribute name="status" id="a1_eqvjr"/>
+        <attribute name="transportticketid" id="a1_b8kqv"/>
+        <attribute name="wonum" id="a1_a7gwm"/>
+        <attribute name="wstart" id="a1_a3rky"/>
+      </schema>
+    </maximo-datasource>
     <maximo-datasource controller="ScheduleDataController" depends-on="wodetails" id="wohazardmaterials" notify-when-parent-loads="true" relationship="hazardousmaterials" selection-mode="none">
       <schema id="ymdjk">
         <attribute id="arnpz" name="hazardid"/>
@@ -1750,6 +1767,11 @@
           <attribute id="p657z" name="assetlocpriority"/>
           <attribute id="ze_za" name="wopriority"/>
           <attribute id="xzaqk" name="assetnum"/>
+          <attribute name="asset" id="a1_eeq9y">
+            <attribute name="assetnum--assetnummm" id="a1_e568j"/>
+            <attribute name="description--assetdesccc" id="a1_kqjj2"/>
+            <attribute name="purchaseprice--assetpp" id="a1_rn7vx"/>
+          </attribute>
           <attribute id="vaq3z" name="location">
             <attribute id="bbj92" name="description--locationdesc"/>
             <attribute id="wak89" name="location--locationnum"/>
@@ -2903,11 +2925,14 @@
                           <box children-sizes="25,25,50" direction="column" id="a1_krj9w">
                             <box background-color="support-01" id="a1_qy8zn">
                               <label label="BOX1" id="a1_wkw32"/>
+                              <field value="{woDetailResource.item.assetnum}" id="a1_enmwa"/>
                             </box>
                             <box background-color="support-02" id="a1_jjgq4" children-sizes="50,50">
                               <label label="BOX2" id="a1_jka4y"/>
+                              <field value="{woDetailResource.item.locationdesc}" id="a1_jznr6"/>
                               <box id="a1_zddbd">
                                 <label label="BOX 2 - 1" id="a1_e8qqz"/>
+                                <field value="{woDetailResource.item.assetpp}" id="a1_gjj3_"/>
                               </box>
                               <box id="a1_ryzj_">
                                 <label label="BOX 2 - 2" id="a1_ekye7"/>
@@ -2915,7 +2940,7 @@
                             </box>
                             <box background-color="support-03" id="a1_qe8kb">
                               <label label="BOX3" id="a1_e8_dm"/>
-                              <field value="{woDetailResource.item.wonum}" id="a1_v5dey"/>
+                              <field value="{transportticket.item.transportticketid}" id="a1_v5dey"/>
                             </box>
                           </box>
                           <refapp-pivot-template id="j6pb9">
