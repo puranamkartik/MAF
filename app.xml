@@ -468,6 +468,7 @@
   <pages id="pages">
     <page controller="SchedulePageController" icon="maximo:schedule" id="schedule" padding="true" path="/schedule" title="My Schedule">
       <states id="nmvrw">
+        <state name="holdingwospec" type="object" id="a1_bpwqj"/>
         <state id="w886y" name="selectedSwitch" type="number" value="0"/>
         <state id="w_8nq" name="dialogLabel" type="string" value=""/>
         <state id="vewqj" name="selectedDS" type="string" value="todaywoassignedDS"/>
@@ -775,6 +776,11 @@
         </panel>
       </stacked-panel>
       <dialogs id="wnynq">
+        <sliding-drawer align="start" content-padding="false" header-text="WOSPECDATA" id="wospecdialog">
+          <box direction="column" id="a1_jwq87">
+            <label label="select workorder spec" padding="default" theme="20-regular" id="a1_vd3ej"/>
+          </box>
+        </sliding-drawer>
         <sliding-drawer align="start" content-padding="false" header-text="{page.state.dialogLabel}" id="slidingwomaterials">
           <box direction="column" id="rw9mp">
             <panel id="daqqr">
@@ -1746,6 +1752,18 @@
         <state id="nagpq" name="locationMeterHeader" type="string" value=""/>
         <state id="edv7y" name="assetLocation" type="boolean" value="true"/>
       </states>
+      <maximo-datasource cache-expiry-ms="1" pre-load="true" id-attribute="workorderspecid" id="wospecdummyload" object-structure="MXWOSPEC" saved-query="wospecdummy" order-by="displaysequence" selection-mode="none">
+        <schema id="a1_kv253">
+          <attribute name="workorderspecid" id="a1_bgna3"/>
+          <attribute name="assetattrid" id="a1_qqgde"/>
+          <attribute name="measureunitid" id="a1_e9adn"/>
+          <attribute name="numvalue" scale="2" id="a1_ewd_7"/>
+          <attribute name="alnvalue" id="a1_ngyyr"/>
+          <attribute name="datevalue" id="a1_d33dg"/>
+          <attribute name="assetattribute.description--assetattributedesc" id="a1_pnjjx"/>
+          <attribute name="displaysequence" id="a1_k4w4d"/>
+        </schema>
+      </maximo-datasource>
       <maximo-datasource cache-expiry-ms="1" controller="WorkOrderDataController" default="true" geometry-format="geojson" id="woDetailResource" item-url="{page.params.href}" object-structure="mxapiwodetail" where="wonum=&quot;{page.params.wonum}&quot; and siteid=&quot;{page.params.siteid}&quot;">
         <schema id="qmvzy">
           <attribute id="yn258" name="autolocate"/>
@@ -2795,6 +2813,8 @@
                     <end horizontal-align="end" id="gvk34" vertical-align="center" width="30">
                       <box direction="row" fill-parent="true" hidden="{item.datevalue}" horizontal-align="end" id="q5zmb" vertical-align="center">
                         <field field-class-name="16-regular" hide-label="true" id="ear47" override-required="true" qualifier="{item.measureunitid}" value="{item.alnvalue || item.numvalue}"/>
+                        <smart-input input-kind="ALN" value="{item.alnvalue}" id="a1_bnbyw"/>
+                        <smart-input input-kind="ALN" value="{item.numvalue}" id="a1_xzvnj"/>
                       </box>
                       <box direction="row" fill-parent="true" hidden="{!item.datevalue}" horizontal-align="end" id="m9rdn" vertical-align="center">
                         <field field-class-name="16-regular" hide-label="true" id="gbn9v" override-required="true" qualifier="{item.measureunitid}">
@@ -2810,9 +2830,9 @@
           <box direction="column" id="jy33r" slot="header-button">
             <border-layout id="v7nge">
               <start id="e_e34">
-                <!-- <button-group id="g84rj">
-                  <button icon="carbon:edit" kind="secondary" id="e9v9e"/>
-                </button-group> -->
+                <button-group id="g84rj">
+                  <button icon="carbon:checkmark--outline" kind="secondary" id="e9v9e" on-click="savethissd" on-click-arg="{{'page':page,'app':app,'ds':woSpecification}}"/>
+                </button-group>
               </start>
             </border-layout>
           </box>
@@ -2892,6 +2912,8 @@
                         <box direction="column" horizontal-align="start" id="r5eaq" padding-top=".5" vertical-align="start">
                           <label label="Hello World" id="a1_xqbrx"/>
                           <button label="Sample Button " on-click="{console.log('Nadeem and Kartik')}" id="a1_q4wb7"/>
+                          <button label="WOSPEC" on-click="wospecdialogc" on-click-arg="{page}" id="a1_dv9z89"/>
+                          <button label="Specification" on-click="showSpecifications" id="a1_adp5k"/>
                           <box background-color="support-03" id="a1_prm6q">
                             <label label="Sample Box" id="a1_p3ekz"/>
                             <field value="{woDetailResource.item.wonum}" id="a1_kbxyk"/>
